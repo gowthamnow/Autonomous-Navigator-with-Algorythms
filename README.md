@@ -6,19 +6,15 @@ Autonomous Navigator is a high-performance micromouse robot designed for maze so
 
 <table align="center">
   <tr>
-    <td align="center"><b>Fabricated Board</b><br><img src="Pictures/fab_Board.jpeg" width="400"></td>
+    <td align="center"><b>Fabricated Board</b><br><img src="Pictures/fab_Board.jpeg" width="380"></td>
+    <td align="center"><b>Bot View</b><br><img src="Pictures/Bot_view1.jpeg" width="380"></td>
   </tr>
   <tr>
-    <td align="center"><b>Bot View</b><br><img src="Pictures/Bot_view1.jpeg" width="400"></td>
+    <td align="center"><b>Bot View - Alternate</b><br><img src="Pictures/Bot_View2.jpeg" width="380"></td>
+    <td align="center"><b>PCB Layout</b><br><img src="Pictures/Layout.png" width="380"></td>
   </tr>
   <tr>
-    <td align="center"><b>Bot View - Alternate</b><br><img src="Pictures/Bot_View2.jpeg" width="400"></td>
-  </tr>
-  <tr>
-    <td align="center"><b>PCB Layout</b><br><img src="Pictures/Layout.png" width="400"></td>
-  </tr>
-  <tr>
-    <td align="center"><b>3D Design</b><br><img src="Pictures/3D_VIEW.png" width="400"></td>
+    <td align="center" colspan="2"><b>3D Design</b><br><img src="Pictures/3D_VIEW.png" width="380"></td>
   </tr>
 </table>
 
