@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌌 Autonomous Navigator V3.0
+# 🌌 Autonomous Navigator
 **The Pinnacle of Micromouse Intelligence**
 
 [![GitHub stars](https://img.shields.io/github/stars/gowthamnow/Autonomous-Navigator-with-Algorythms?style=flat-square&color=blue)](https://github.com/gowthamnow/Autonomous-Navigator-with-Algorythms)
