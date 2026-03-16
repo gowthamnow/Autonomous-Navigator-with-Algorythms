@@ -136,6 +136,34 @@ The `Flood Fill` algorithm is the cognitive engine of the Autonomous Navigator. 
 #### Core Function: `floodFill3()`
 This function dynamically recalculates the entire 16x16 grid whenever a new wall is discovered.
 
+<details open>
+<summary><b>Implementation (Raw C++)</b></summary>
+<br>
+
+```cpp
+void floodFill3(){
+    while (!queue.isEmpty ()){
+        yrun=queue.dequeue();
+        xrun=queue.dequeue();
+        
+        x_0,y_0,x_1,y_1,x_2,y_2,x_3,y_3 = getSurrounds(xrun,yrun);
+        
+        // North Check
+        if(x_0>=0 && y_0>=0 ){
+            if (flood[y_0][x_0]==254){
+                if (isAccessible(xrun,yrun,x_0,y_0)){
+                    flood[y_0][x_0]=flood[yrun][xrun]+1;
+                    queue.enqueue(y_0);
+                    queue.enqueue(x_0);
+                }
+            }
+        }
+        // ... (Repeated for East, South, West)
+    }
+}
+```
+</details>
+
 | Line (Conceptual) | Architecture & Logic |
 | :--- | :--- |
 | `void floodFill3(int x, int y)` | Initiates the BFS (Breadth-First Search). `(x, y)` is the robot's current location where a new wall was just detected. |
@@ -157,6 +185,29 @@ High-speed translation in a 180mm channel requires control loops operating at `>
 
 #### Core Function: `wallPid()`
 This function leverages the opposing high-precision Time-of-Flight sensors.
+
+<details open>
+<summary><b>Implementation (Raw C++)</b></summary>
+<br>
+
+```cpp
+void wallPid()
+{
+    wallError = (tof[0] - (tof[4]));
+    rightLastError = 60 - tof[4];
+    leftLastError = 60 - tof[0];
+    correction = (wallError * wallP) + ((wallError - wallLastError) * wallD);
+    wallLastError = wallError;
+    
+    // Anti-Windup Logic
+    if (correction > 20) { correction = 0; }
+    else if (correction < -20) { correction = 0; }
+    
+    leftPwm = leftBase - correction;
+    rightPwm = rightBase + correction;
+}
+```
+</details>
 
 | Line (Conceptual) | Architecture & Logic |
 | :--- | :--- |
