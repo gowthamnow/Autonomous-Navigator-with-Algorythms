@@ -1,116 +1,111 @@
-# 🤖 Autonomous Navigator: Advanced Micromouse & Maze Solver
+# 🤖 Autonomous Navigator: Professional Micromouse & Pathfinding AI
 
 [![GitHub stars](https://img.shields.io/github/stars/gowthamnow/Autonomous-Navigator-with-Algorythms?style=social)](https://github.com/gowthamnow/Autonomous-Navigator-with-Algorythms)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Autonomous Navigator** is a high-performance, precision-engineered Micromouse robot designed to solve complex mazes using the legendary **Flood Fill Algorithm**. This repository showcases the evolution of the project through three distinct iterations of hardware design, control theory integration, and competitive success.
+**Autonomous Navigator** is a high-speed, precision-engineered Micromouse robot capable of solving complex 16x16 mazes. It represents the pinnacle of hardware-software integration, featuring custom multi-layer PCBs, a sophisticated **Flood Fill** algorithm, and real-time **PD control**.
 
 ---
 
-## 🏆 Achievement: Robofest Winner
-The Autonomous Navigator secured a top position at **Robofest**, demonstrating exceptional speed and algorithmic efficiency in solving the competition maze.
+## 🎬 Project in Action
+Secure your front-row seat to the maze-solving logic.
 
 <div align="center">
-  <img src="Winning_Photos/ROBOFEST_WINNING/1021 - Robofest.png" width="600" style="border-radius: 10px; border: 3px solid #FFD700;">
-  <p><i>Winner's Podium at Robofest</i></p>
+  <video src="Event_Working_Video/Ultrasonic%202%20Winner%20maze%20solving%20in%20shortest%20time.mp4" width="600" controls></video>
+  <p><i>Winner Run: Solving the shortest path in record time.</i></p>
 </div>
 
 ---
 
-## 🏎️ Hardware Evolution: Three Generations
-
-This project has evolved through three hardware versions, each optimizing for size, reliability, and manufacturing complexity.
-
-### 1. SMT Version (Advanced)
-The flagship version featuring high-density Surface Mount Technology for a compact footprint and superior performance.
-- **Key Features**: STM32 Onboard, compact power regulation, high-speed signal integrity.
-- **Files**: `PCB_SMD_DESIGN_FILES/`
+## 🏆 Competitive Excellence: Robofest Winner
+This robot was specifically designed for **Robofest**, where it dominated the competition through algorithmic efficiency and physical stability.
 
 <div align="center">
-  <table style="border-collapse: collapse; border: none;">
-    <tr>
-      <td align="center"><img src="Pictures/3D_VIEW.png" width="350"><br><b>3D Render</b></td>
-      <td align="center"><img src="Pictures/Bot_view1.jpeg" width="350"><br><b>Assembled SMT Bot</b></td>
-    </tr>
-  </table>
-</div>
-
-### 2. Double Layer Version (Standard)
-A robust version designed for standard PCB manufacturing, balancing complexity and reliability.
-- **Key Features**: Dual-side routing, optimized component placement for weight distribution.
-- **Files**: `SINGLE_DOUBLE_LAYER_PCB_DESIGN/DOUBLE_LAYER/`
-
-<div align="center">
-  <img src="Pictures/double_layer_layout.png" width="500" style="border-radius: 8px;">
-  <p><i>Double Layer PCB Layout</i></p>
-</div>
-
-### 3. Single Layer Version (Prototyping)
-An accessible version designed for rapid prototyping and home fabrication.
-- **Key Features**: Single-side routing, easy to solder, ideal for educational purposes.
-- **Files**: `SINGLE_DOUBLE_LAYER_PCB_DESIGN/SINGLE_LAYER/`
-
-<div align="center">
-  <img src="Pictures/fab_Board.jpeg" width="400" style="border-radius: 8px;">
-  <p><i>Single Layer Fabrication Board</i></p>
+  <img src="Winning_Photos/ROBOFEST_WINNING/1021 - Robofest.png" width="550" style="border-radius: 12px; border: 4px solid #D4AF37;">
+  <p><b>Top Podium Finish @ Robofest</b></p>
 </div>
 
 ---
 
-## 🧠 Algorithmic Core
+## 🧠 Technical Deep-Dive
 
-### 1. The Algorithm: Flood Fill
-The robot solves the maze by mapping a "potential flow" from any cell to the center.
-- **Dynamic Updates**: Detects walls using ToF sensors and updates the `cells[16][16]` array in real-time.
-- **Path Optimization**: Recalculates the shortest path after every cell movement.
+### 1. The Algorithm: Flood Fill (16x16 Grid)
+The heart of the Navigator is a proprietary implementation of the **Flood Fill Algorithm**. Unlike basic maze solvers, this robot maintains a dynamic weight map of the entire 256-cell grid.
 
-### 2. Control Theory: PD Regulation
-- **Wall Following**: Uses a Proportional-Derivative (PD) controller to stay centered.
-- **Stability**: High-speed correction leads to smooth navigation and sharp turns.
+- **Dynamic Remapping**: Every time a sensor detects a wall, the `cells[16][16]` array is updated, and the `floodFill3()` function recalculates the shortest manhattan distance to the goal (center).
+- **Orientation Awareness**: The `orient` variable (0-3) tracks the robot's heading, allowing the `toMove()` function to make intelligent L/R/F decisions based on the next cell's potential.
+- **Coordinate Tracking**: Absolute $(x, y)$ tracking ensures the robot never "gets lost," even after complex maneuvers.
 
-### 3. Perception: ToF Sensor Fusion
-- **Sensors**: 3x VL53L0X (Long Range) + 2x VL6180X (Short Range).
-- **Precision**: Millimeter-level accuracy for perfect alignment.
+### 2. Control Theory: PID Loop Regulation
+Navigation stability is maintained through a high-frequency Proportional-Derivative (PD) controller.
+- **Parameters**: tuned to $P=0.2$ and $D=1.6$ (or $0.685$ for specific motor profiles).
+- **Error Correction**: The `wallPid()` function calculates the delta between left and right ToF sensors to keep the bot perfectly centered.
+- **TB6612FNG Driver**: PWM signals are adjusted in real-time to the gear motors to compensate for mechanical drift.
 
----
-
-## 📺 Project in Action (Videos)
-
-Experience the robot solving mazes and testing sensors:
-
-1. 🥇 **[Winning Maze Run (Shortest Time)](Event_Working_Video/Ultrasonic%202%20Winner%20maze%20solving%20in%20shortest%20time.mp4)**
-2. 🔍 **[ToF Sensor Performance 1](Event_Working_Video/ToF%20Sensor%201.mp4)**
-3. 📉 **[ToF Sensor Performance 3](Event_Working_Video/ToF%20Sensor%203.mp4)**
-4. 📍 **[Sensor Calibration at KCT](Event_Working_Video/TOF%20Sensor%204%20at%20KCT%20(1).mp4)**
-5. ⚡ **[Ultrasonic Sensor Test at Bannari](Event_Working_Video/Ultrasonic%20Sensor%20at%20Bannari.mp4)**
+### 3. Perception: Time-of-Flight (ToF) Sensor Fusion
+The "eyes" of the robot consist of 5 high-precision infrared sensors:
+- **VL53L0X**: Long-range detection for path-ahead planning.
+- **VL6180X**: Short-range, high-accuracy sensors for wall hugging and turning alignment.
 
 ---
 
-## 📂 Repository Structure
+## 🏎️ Hardware Iterations
+
+### 🟢 Version 1: SMT Flagship (Recommended)
+Optimized for weight and signal integrity using high-density surface mount components.
+- **MCU**: STM32 Onboard
+- **Design**: Built in Altium Designer
+- **Documentation**: [PCB_SMD_DESIGN_FILES/](PCB_SMD_DESIGN_FILES/)
+
+<div align="center">
+  <img src="Pictures/3D_VIEW.png" width="450"><br><i>3D Isometric Render of SMT PCB</i>
+</div>
+
+### 🟡 Version 2: Double Layer
+A robust design for standard manufacturing, prioritizing ease of assembly without sacrificing performance.
+- **Design**: Double-sided routing
+- **Documentation**: [PCB_Layout](Pictures/double_layer_layout.png)
+
+<div align="center">
+  <img src="Pictures/double_layer_layout.png" width="450"><br><i>Precision Double-Layer Routing</i>
+</div>
+
+### 🔵 Version 3: Single Layer (Prototype)
+Designed for single-sided etching, ideal for quick testing and educational demonstration.
+- **Hardware Profile**: [Bot_View2.jpeg](Pictures/Bot_View2.jpeg)
+- **Documentation**: [SINGLE_DOUBLE_LAYER_PCB_DESIGN/](SINGLE_DOUBLE_LAYER_PCB_DESIGN/)
+
+<div align="center">
+  <img src="Pictures/Bot_View2.jpeg" width="450" style="border-radius: 10px;"><br><i>Single Layer Prototype Construction</i>
+</div>
+
+---
+
+## 📂 Repository Roadmap
 
 ```text
-├── CODE/                        # Arduino/C++ Firmware (Flood Fill, PID, Sensors)
-├── PCB_SMD_DESIGN_FILES/         # Altium/SMD PCB Files (SMT Version)
-├── SINGLE_DOUBLE_LAYER_PCB_DESIGN/ # DipTrace/PCB Files (Single/Double Layers)
-├── Event_Working_Video/          # Full test runs and competition videos
-├── Winning_Photos/               # Robofest and Event awards
-└── Pictures/                    # Hardware renders and bot photos
+├── CODE/               # Full Firmware (Algo, PID, Motor, Sensor logic)
+├── Robofest/           # Documentation, presentations, and award certificates
+├── Event_Working_Video/# 📺 Original test runs and competition footage
+├── Winning_Photos/     # Historical archive of event victories
+├── Pictures/           # High-resolution hardware assets and renders
+└── PCB_SMD_FILES/      # Production-ready Altium files
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Execution Guide
 
-1. **Firmware**: Open `CODE/Algo.ino` in Arduino IDE. Ensure STM32 core is installed.
-2. **Hardware**: Choose your version (SMT, Single, or Double) from the respective design folders.
-3. **Calibrate**: Use `Sensor.ino` to calibrate your ToF sensors for the specific maze environment.
-4. **Deploy**: Upload and watch the bot solve the maze!
+1. **Hardware Selection**: Choose your PCB iteration from the design folders.
+2. **Setup**: Load `CODE/Algo.ino` into Arduino IDE (ensure STM32 support is active).
+3. **Calibrate**: Run the sensor baseline test to normalize ToF readings.
+4. **Solve**: Place the bot in the starting cell and initiate the maze discovery phase.
 
 ---
 
 ## 🤝 Developed By
-**Gowtham** - Robotics & Embedded Systems Enthusiast
-[Portfolio/GitHub](https://github.com/gowthamnow)
+**Gowtham** - Specialist in Embedded Systems & AI-driven Robotics.
+[GitHub Profile](https://github.com/gowthamnow) | [Contact for Collaborations](https://github.com/gowthamnow)
 
 ---
-*Autonomous Navigator - Pushing the boundaries of micromouse robotics.*
+*Autonomous Navigator - Pushing the boundaries of Micromouse intelligence.*
