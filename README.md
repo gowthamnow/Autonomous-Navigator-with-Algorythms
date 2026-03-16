@@ -72,26 +72,26 @@ The ultimate competitive form. Transitioned entirely to 0603 Surface Mount Techn
 
 | Top Chassis View | Raw PCB Design |
 | :---: | :---: |
-| <img src="Pictures/Bot_view1.jpeg" height="250"> | <img src="Pictures/fab_Board.jpeg" height="250"> |
+| <img src="Pictures/Bot_view1.jpeg" height="250" alt="Generation 3 SMT Bot"> | <img src="Pictures/fab_Board.jpeg" height="250" alt="Generation 3 PCB"> |
 </details>
 
-<details>
+<details open>
 <summary><b>🔹 Generation 2: "The Double Layer"</b></summary>
 <br>
 The breakthrough. Introduced professional 2-layer FR4 routing with top-layer ground planes for superior EMI rejection.
 
-| 3D Render Concept | Assembled Prototype |
+| Assembled Robot | Board Layout |
 | :---: | :---: |
-| <img src="Pictures/3D_VIEW.png" height="250"> | <img src="Pictures/ASSEMBLED_ROBO.jpg" height="250"> |
+| <img src="Pictures/ASSEMBLED_ROBO.HEIC" height="250" alt="Generation 2 Robot"> | <img src="Pictures/double_layer_layout.png" height="250" alt="Generation 2 PCB Layout"> |
 </details>
 
-<details>
-<summary><b>🔹 Generation 1: "The Debut"</b></summary>
+<details open>
+<summary><b>🔹 Generation 1: "The Debut" (Single Layer)</b></summary>
 <br>
 The proof of concept. A manually etched, single-layer board relying on through-hole components to validate the foundational Flood Fill C++ algorithms.
 
 <div align="center">
-  <img src="Pictures/IMG-20241015-WA0003.jpg" height="250">
+  <img src="Pictures/SINGLE_LAYER.HEIC" height="250" alt="Generation 1 Single Layer PCB">
 </div>
 </details>
 
